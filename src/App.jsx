@@ -1,43 +1,34 @@
 import img from "./assets/images/1026-200x300.jpg";
 import PropTypes from 'prop-types';
 
+import WelcomeText from "./components/WelcomeText";
+import MyButton from "./components/MyButton";
+import ListFruits from "./components/fruits/ListFruits";
 
-const WelcomeText = ({user}) => (user ? <h3>Online</h3> : <h3>Offline</h3>);
-
-const MyButton = ({text}) => {
-    return <button>{text}</button>
-};
+import ButtonState from "./components/ButtonState";
 
 MyButton.propTypes = {
     text: PropTypes.string.isRequired,
 }
 
-const ItemFruits = (props) => {
-    return (
-        <li>{props.fruit}</li>
-    )
-}
-
 const App = () => {
     const title = "Titulo de prueba";
-    const fruits = ["🍉", "🍊", "🍋", "🍍", "🍒"];
     let user = true;
 
+    const fruits = ["🍉", "🍊", "🍋", "🍍", "🍒"];
+    const fruits2 = ["🍇", "🍏", "🍎", "🍒"];
 
     return (
         <>
+            <ButtonState/>
+            
             <h1>{title}</h1>
             <img src={img} />
 
             <WelcomeText user={user}/>
 
-            <ul>
-                {
-                    fruits.map((fruit, index) => (
-                        <ItemFruits key={index} fruit={fruit} />
-                    ))
-                }
-            </ul>
+            <ListFruits fruits={fruits} />
+            <ListFruits fruits={fruits2} />
 
             <MyButton text='Save'/>
         </>
